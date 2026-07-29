@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Трекер разработки приложений</title>
+<style>
+  :root{
+    --bg:#0d0f14; --card:#151823; --inner:#1b1f2e; --line:#262b3d;
+    --text:#e8eaf2; --muted:#8b91a7;
+    --amber:#f6a63c; --green:#39d98a; --blue:#5aa7ff; --red:#ff6b6b; --purple:#b18cff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+    padding:28px 16px 60px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  .page-title{font-size:26px;font-weight:700;text-align:center;margin:0 0 6px}
+  .subtitle{text-align:center;color:var(--muted);margin:0 0 4px;font-size:15px}
+  .checked{text-align:center;color:var(--muted);font-size:13px;margin:0 0 26px}
+  .checked b{color:var(--text);font-weight:600}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:720px){.grid{grid-template-columns:1fr}}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:20px 20px 18px;overflow:hidden;
+  }
+  .card-head{margin-bottom:10px}
+  .app-title{display:flex;align-items:center;gap:9px}
+  .emoji{font-size:24px;line-height:1}
+  .app-name{font-size:19px;font-weight:700}
+  .tagline{color:var(--muted);font-size:13.5px;margin-top:3px}
+
+  .statusline{font-size:14.5px;margin:12px 0;color:var(--text);font-weight:600}
+
+  .stores{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .store{
+    display:flex;flex-direction:column;gap:2px;flex:1;min-width:120px;
+    background:var(--inner);border:1px solid var(--line);border-left-width:3px;
+    border-radius:10px;padding:8px 11px;
+  }
+  .store-name{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .store-label{font-size:13.5px;font-weight:600}
+  .store.live{border-left-color:var(--green)} .store.live .store-label{color:var(--green)}
+  .store.review{border-left-color:var(--blue)} .store.review .store-label{color:var(--blue)}
+  .store.building{border-left-color:var(--amber)} .store.building .store-label{color:var(--amber)}
+  .store.planned{border-left-color:var(--muted)} .store.planned .store-label{color:var(--muted)}
+  .store.rejected{border-left-color:var(--red)} .store.rejected .store-label{color:var(--red)}
+
+  .next{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+  .next-label{color:var(--amber);font-weight:600}
+
+  .history-label{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);
+    border-top:1px solid var(--line);padding-top:14px;margin-bottom:12px}
+
+  .timeline{list-style:none;margin:0;padding:0;position:relative}
+  .timeline:before{content:"";position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:var(--line)}
+  .step{position:relative;padding:0 0 15px 26px}
+  .step:last-child{padding-bottom:0}
+  .dot{
+    position:absolute;left:0;top:2px;width:14px;height:14px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;
+    background:var(--inner);border:2px solid var(--line);color:var(--bg);z-index:1;
+  }
+  .dot-done{background:var(--green);border-color:var(--green);color:var(--bg)}
+  .dot-now{background:var(--amber);border-color:var(--amber);color:var(--bg);
+    box-shadow:0 0 0 4px rgba(246,166,60,.18)}
+  .dot-todo{background:var(--inner);border-color:var(--muted)}
+
+  .step-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+  .step-title{font-weight:600;font-size:14px}
+  .step-meta{display:flex;align-items:center;gap:7px;flex-shrink:0}
+  .model-badge{
+    background:rgba(177,140,255,.14);color:var(--purple);border:1px solid rgba(177,140,255,.35);
+    border-radius:6px;padding:1px 6px;font-size:11px;font-weight:600;white-space:nowrap;
+  }
+  .step-time{font-size:11.5px;color:var(--muted);white-space:nowrap}
+  .step-detail{font-size:13px;color:var(--muted);margin-top:3px}
+
+  .mini-models{
+    margin-top:14px;padding-top:12px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--muted);
+  }
+
+  .stats{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:20px;margin-top:24px;
+  }
+  .stats h2{font-size:16px;margin:0 0 14px}
+  .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:9px}
+  .bar-name{width:110px;font-size:13px;color:var(--text);flex-shrink:0}
+  .bar-track{flex:1;height:10px;background:var(--inner);border-radius:6px;overflow:hidden}
+  .bar-fill{display:block;height:100%;background:linear-gradient(90deg,var(--purple),#8f6fe0);border-radius:6px}
+  .bar-val{width:28px;text-align:right;font-size:13px;color:var(--muted);flex-shrink:0}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  .lg{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+  .lg-dot{width:10px;height:10px;border-radius:50%}
+  .lg-dot.live{background:var(--green)} .lg-dot.review{background:var(--blue)}
+  .lg-dot.building{background:var(--amber)} .lg-dot.planned{background:var(--muted)}
+  .lg-dot.rejected{background:var(--red)}
+
+  .muted{color:var(--muted);font-size:13px}
+  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:26px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="page-title">Трекер разработки приложений</h1>
+    <p class="subtitle">Статусы в App Store и Google Play, что делается сейчас, подробная история с моделями</p>
+    <p class="checked">Последняя проверка статуса: <b>2026-07-28 20:53 (UTC+03:00)</b></p>
+
+    <div class="grid">
+    <article class="card">
+      <header class="card-head">
+        <div class="app-title"><span class="emoji">🔥</span><span class="app-name">Habits</span></div>
+        <div class="tagline">Трекер привычек с мягкими напоминаниями</div>
+      </header>
+      <div class="statusline">Ждём ревью Apple по версии 1.0.2, Android уже в проде.</div>
+      <div class="stores">
+        <span class="store review"><span class="store-name">App Store</span><span class="store-label">На проверке</span></span>
+        <span class="store live"><span class="store-name">Google Play</span><span class="store-label">Опубликовано</span></span>
+      </div>
+      <div class="next"><span class="next-label">Дальше:</span> Ответить на возможные замечания Apple, подготовить 1.0.3</div>
+      <div class="history-label">История - новое сверху</div>
+      <ul class="timeline">
+      <li class="step">
+        <span class="dot dot-now">&#8226;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Отправлен билд 1.0.2 в App Store Review</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-8</span>
+              <span class="step-time">2026-07-28 10:15</span>
+            </span>
+          </div>
+          <div class="step-detail">EAS build iOS, загружен через Transporter, статус Waiting for Review</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Релиз Android 1.0.2 в проде</span>
+            <span class="step-meta">
+              <span class="model-badge">sonnet-5</span>
+              <span class="step-time">2026-07-27 18:40</span>
+            </span>
+          </div>
+          <div class="step-detail">Google Play, staged rollout 100%, без краш-репортов</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Исправлен краш при пустом env RevenueCat</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-8</span>
+              <span class="step-time">2026-07-27 14:05</span>
+            </span>
+          </div>
+          <div class="step-detail">Добавлен фолбэк ключа в код, чтобы клиент не бросал исключение на старте</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Готовы скриншоты и листинг</span>
+            <span class="step-meta">
+              <span class="model-badge">sonnet-5</span>
+              <span class="step-time">2026-07-26 11:30</span>
+            </span>
+          </div>
+          <div class="step-detail">6.7 и 6.5 дюйма для App Store, feature graphic для Google Play</div>
+        </div>
+      </li></ul>
+      <div class="mini-models">Модели: opus-4-8 - 2, sonnet-5 - 2</div>
+    </article>
+    <article class="card">
+      <header class="card-head">
+        <div class="app-title"><span class="emoji">🌱</span><span class="app-name">Spring</span></div>
+        <div class="tagline">Мини-приложение с пружинной анимацией</div>
+      </header>
+      <div class="statusline">Веб-MVP готов, собираем первый internal-билд Android.</div>
+      <div class="stores">
+        <span class="store planned"><span class="store-name">App Store</span><span class="store-label">Запланировано</span></span>
+        <span class="store building"><span class="store-name">Google Play</span><span class="store-label">Сборка</span></span>
+      </div>
+      <div class="next"><span class="next-label">Дальше:</span> Stage 9: Feedback Layer (звук, вибрация, интенсивность)</div>
+      <div class="history-label">История - новое сверху</div>
+      <ul class="timeline">
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">3D-пружина: визуальная полировка завершена</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-28 20:53</span>
+            </span>
+          </div>
+          <div class="step-detail">Пропорции HEIGHT=4.2 RADIUS=0.9, serif-шрифт цели (Georgia 28px), подпись MY GOAL, скрытые концы провода (taper+phase offset), подставка, убрана тень</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-now">&#8226;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Запущена EAS-сборка Android (internal)</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-8</span>
+              <span class="step-time">2026-07-28 09:50</span>
+            </span>
+          </div>
+          <div class="step-detail">Профиль preview, ждём APK для теста на эмуляторе</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Готов веб-MVP пружинной анимации</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-8</span>
+              <span class="step-time">2026-07-27 16:20</span>
+            </span>
+          </div>
+          <div class="step-detail">Reanimated + SVG, состояние в AsyncStorage</div>
+        </div>
+      </li></ul>
+      <div class="mini-models">Модели: opus-4-6 - 1, opus-4-8 - 2</div>
+    </article></div>
+
+    <section class="stats">
+      <h2>Статистика по моделям (суммарно по всем приложениям)</h2>
+      
+        <div class="bar-row">
+          <span class="bar-name">opus-4-8</span>
+          <span class="bar-track"><span class="bar-fill" style="width:100%"></span></span>
+          <span class="bar-val">4</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">sonnet-5</span>
+          <span class="bar-track"><span class="bar-fill" style="width:50%"></span></span>
+          <span class="bar-val">2</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">opus-4-6</span>
+          <span class="bar-track"><span class="bar-fill" style="width:25%"></span></span>
+          <span class="bar-val">1</span>
+        </div>
+      
+  <div class="legend">
+    <span class="lg"><span class="lg-dot live"></span>Опубликовано</span>
+    <span class="lg"><span class="lg-dot review"></span>На проверке</span>
+    <span class="lg"><span class="lg-dot building"></span>Сборка</span>
+    <span class="lg"><span class="lg-dot planned"></span>Запланировано</span>
+    <span class="lg"><span class="lg-dot rejected"></span>Возврат</span>
+  </div>
+    </section>
+
+    <footer>Обновляется автоматически из рабочих чатов</footer>
+  </div>
+</body>
+</html>
