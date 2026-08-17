@@ -114,7 +114,7 @@
   <div class="wrap">
     <h1 class="page-title">Трекер разработки приложений</h1>
     <p class="subtitle">Статусы в App Store и Google Play, что делается сейчас, подробная история с моделями</p>
-    <p class="checked">Последняя проверка статуса: <b>2026-07-29 20:14 (UTC+03:00)</b></p>
+    <p class="checked">Последняя проверка статуса: <b>2026-08-17 21:27 (UTC+03:00)</b></p>
 
     <div class="grid">
     <article class="card">
@@ -189,14 +189,599 @@
         <div class="app-title"><span class="emoji">🌱</span><span class="app-name">Spring</span></div>
         <div class="tagline">Мини-приложение с пружинной анимацией</div>
       </header>
-      <div class="statusline">Веб-MVP готов, собираем первый internal-билд Android.</div>
+      <div class="statusline">MVP готов, код запушен на GitHub</div>
       <div class="stores">
         <span class="store planned"><span class="store-name">App Store</span><span class="store-label">Запланировано</span></span>
         <span class="store building"><span class="store-name">Google Play</span><span class="store-label">Сборка</span></span>
       </div>
-      <div class="next"><span class="next-label">Дальше:</span> Stage 9: Feedback Layer (звук, вибрация, интенсивность)</div>
+      <div class="next"><span class="next-label">Дальше:</span> Тест на телефоне через автообновление</div>
       <div class="history-label">История - новое сверху</div>
       <ul class="timeline">
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">v1.1.1: клики только по пружине, возврат цвета после финала</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-17 21:27</span>
+            </span>
+          </div>
+          <div class="step-detail">hitMesh динамически масштабируется при сжатии пружины, цвет плавно возвращается к оригинальному при распрямлении. versionCode=3. Автообновление через GitHub Releases.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">v1.1.0 APK загружен в GitHub Releases, манифест обновлен</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-17 11:58</span>
+            </span>
+          </div>
+          <div class="step-detail">Автообновление готово: versionCode=2, x10 тапов, множитель 1-100x, анимация 5с. APK 108.3 MB uploaded.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">x10 тапов + множитель + анимация 5с</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-17 10:55</span>
+            </span>
+          </div>
+          <div class="step-detail">completionTarget 47500-52500 (x10), debugTapMultiplier 1-100x в настройках, финальная анимация растянута до 5с</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">APK с модулем самообновления собран</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-14 12:40</span>
+            </span>
+          </div>
+          <div class="step-detail">build-selfupdate.apk (113 МБ), модуль self-updater скомпилирован, ANDROID_HOME задан явно</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">feat: самообновление APK - нативный модуль SelfUpdater</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-14 11:53</span>
+            </span>
+          </div>
+          <div class="step-detail">Expo Module с Kotlin SelfUpdater + InstallReceiver. UI в настройках: кнопка проверки обновлений, прогресс-бар, установка через PackageInstaller. Манифест update.json на GitHub. Скрипт выпуска release-apk.sh. Репо spring-releases создан.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">[TEST] debug-ползунок completionTarget и счетчик тапов</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-14 11:29</span>
+            </span>
+          </div>
+          <div class="step-detail">Настройки: ползунок 10-5250 для completionTarget + Reset. Главный экран: счетчик тапов в верхнем левом углу. Все помечено [TEST] для удаления перед продом.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Фикс вибрации: легкий тап + SMS-паттерн при этапе</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-13 10:31</span>
+            </span>
+          </div>
+          <div class="step-detail">Тап/свайп через виток: selectionAsync (самая легкая). Этап сжатия: Vibration pattern [250,150,250] Android, тройной Heavy impact iOS.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Фикс: пружина разжата при перезапуске (WebView)</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-13 10:25</span>
+            </span>
+          </div>
+          <div class="step-detail">WebView стартовал с targetCompression=0 вместо сохраненного значения. Инжектируем начальное сжатие через injectedJavaScriptBeforeContentLoaded.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Эффект красного нагрева пружины с 19-го этапа</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-13 10:16</span>
+            </span>
+          </div>
+          <div class="step-detail">Плавный нагрев 19-24 этап: sqrt+квадратичная кривая, ускоряющаяся прогрессия. Цвет в linear space, без влияния на этапы 1-18.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Эффект нагрева пружины с 15-го этапа</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-12 20:51</span>
+            </span>
+          </div>
+          <div class="step-detail">Цвет пружины постепенно переходит от серого к красному (раскаленный металл) с 15-го по 24-й этап. Металлические отражения сохранены для реализма.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Вибрация свайп-вверх + расширенный финал 5 сек</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-12 20:28</span>
+            </span>
+          </div>
+          <div class="step-detail">Свайп вверх дает вибрацию без подсчета кликов. Финал: 5.5 сек, двойное свечение, пульсирующая вибрация Heavy/120мс.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Фикс вибрации Android - VIBRATE permission</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-11 22:14</span>
+            </span>
+          </div>
+          <div class="step-detail">Добавлен android.permission.VIBRATE в app.json. Пересобран APK локально.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Локальная сборка Android APK</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-11 11:25</span>
+            </span>
+          </div>
+          <div class="step-detail">preview профиль, 108 МБ. Путь: build-1786436705018.apk</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Единый звук сжатия пружины</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-11 10:42</span>
+            </span>
+          </div>
+          <div class="step-detail">Заменены 3 wav-файла этапов (subtle/medium/strong) одним MP3 (stage_spring.mp3, 1 сек). Упрощена логика stageSound. Обновлены тесты.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Микровибрация при тапе и свайп-пересечении витка</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-11 10:33</span>
+            </span>
+          </div>
+          <div class="step-detail">tapHaptic (ImpactFeedbackStyle.Light) при каждом зарегистрированном тапе/свайп-витке. Этапы и финал используют свои более сильные вибрации.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Свайп вниз по пружине засчитывает клики</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-11 10:24</span>
+            </span>
+          </div>
+          <div class="step-detail">При свайпе вниз каждое пересечение витка = 1 тап. Свайп вверх игнорируется. Обычный тап работает. Реализовано для web (pointerevents) и native (touchevents в WebView). Тесты 98/98.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Новая механика этапов: фиксированные 2/6/10 + геометрическая прогрессия</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-11 09:46</span>
+            </span>
+          </div>
+          <div class="step-detail">Первые 3 этапа фиксированы (2, 6, 10 тапов). Остальные 21 - геометрическая прогрессия с джиттером. Каждый этап строго дороже предыдущего. Тесты 98/98 пройдены, браузерный стресс-тест ~5350 тапов без ошибок.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Стресс-тест 5500 тапов пройден</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-10 14:19</span>
+            </span>
+          </div>
+          <div class="step-detail">1000 тапов при 40мс + 4500 при 5мс. Пружина плавно сжималась, финальная анимация сработала, экран завершения отобразился. Консоль чистая, крашей нет.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Все задачи ТЗ реализованы, код запушен</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-07 00:27</span>
+            </span>
+          </div>
+          <div class="step-detail">Raycasting по пружине, световая волна, логотип Spring, кнопка Начать, app icon/splash, полировка UI (цвета в тему, accessibility, i18n). Веб-проверка пройдена, ошибок нет.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Полировка UI: цвета в тему, accessibility, i18n</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-07 00:26</span>
+            </span>
+          </div>
+          <div class="step-detail">10+ хардкоженных цветов вынесены в colors.ts, accessibilityLabel на кнопках/инпутах/chips через i18n (4 локали), accessibilityState на language chips</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Веб-проверка всех экранов пройдена</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-07 00:16</span>
+            </span>
+          </div>
+          <div class="step-detail">Create-goal, main, settings - все экраны работают, консоль чистая, иконки на месте</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">App icon и splash screen с дизайном пружины</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-07 00:12</span>
+            </span>
+          </div>
+          <div class="step-detail">Заменены icon.png (1024x1024), favicon.png (48x48), splash-icon.png (200x200) и все 3 Android adaptive icon варианта (foreground/background/monochrome) на дизайн пружины</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 30: логотип Spring на экране создания цели</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-07 00:04</span>
+            </span>
+          </div>
+          <div class="step-detail">SVG-иконка пружины + текст Spring (serif). Заменяет текстовый заголовок. Все требования ТЗ реализованы.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 29: световая волна при финале</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-07 00:02</span>
+            </span>
+          </div>
+          <div class="step-detail">Sprite с radial gradient + AdditiveBlending расширяется и затухает при выстреле пружины (1400-2800мс). Web: R3F primitive sprite. Native: Three.js sprite в WebView.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 28: raycasting по 3D-модели пружины</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-06 23:52</span>
+            </span>
+          </div>
+          <div class="step-detail">Тапы через Three.js Raycaster по геометрии пружины. Невидимый хитбокс-цилиндр для комфортного нажатия между витками. Web: pointerup + raycaster. Native: touch + raycaster + postMessage. GestureDetector убран.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 28: тап только по пружине</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-06 23:37</span>
+            </span>
+          </div>
+          <div class="step-detail">GestureDetector перенесён на springHitArea (55% ширины, центрирован). Тапы мимо пружины игнорируются. Проверено в браузере.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 27: тапы уменьшены в 50 раз, градиентный фон, сборка APK</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-04 22:44</span>
+            </span>
+          </div>
+          <div class="step-detail">Цель: 1900-2100 тапов (ТЗ/50, ~9.5 мин непрерывно). Градиентный фон вместо 3D backdrop. APK собирается. Тесты 98/98.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Градиентный фон + уменьшение тапов в 10 раз</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-04 20:55</span>
+            </span>
+          </div>
+          <div class="step-detail">Заменил 3D CoveBackdrop на градиентную canvas-текстуру (обе версии). Уменьшил цель с 95K-105K до 9.5K-10.5K тапов (~48 мин непрерывного нажатия). Тесты 98/98.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 26: реалистичность пружины, синхронизация веб/мобайл, лицензии</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-08-03 23:44</span>
+            </span>
+          </div>
+          <div class="step-detail">ACES tone mapping, rim light, envMapIntensity 0.9, RADIAL_SEGS 48, полусферы на торцах, тени PCFShadowMap, туман, синхронизация Spring3D/SpringWebView, 18 лицензий в настройках, APK собран</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">APK сборка с оптимизацией</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-31 19:19</span>
+            </span>
+          </div>
+          <div class="step-detail">build-1785514719329.apk, 107MB. fake shadow, frameloop=demand, текстура 256, DPR 1.5, коррекция яркости нативе</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">APK сборка (Stage 22)</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-31 11:16</span>
+            </span>
+          </div>
+          <div class="step-detail">build-1785485762389.apk, 107MB, включает фикс фона и PCFShadowMap</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 22: полировка фона и теней</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-31 00:37</span>
+            </span>
+          </div>
+          <div class="step-detail">Бесшовная текстура фона (убраны полоски), PCFShadowMap вместо deprecated PCFSoftShadowMap</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 21: Android APK собран</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-30 23:21</span>
+            </span>
+          </div>
+          <div class="step-detail">Тестовый APK (107MB) собран локально через eas build --profile preview --local. Сборка заняла ~23 минуты (первая, без кеша gradle). Файл: build-1785442869245.apk. Визуальная вибрация пружины при этапе добавлена и закоммичена.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 20: Коммит и пуш на GitHub</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-30 21:37</span>
+            </span>
+          </div>
+          <div class="step-detail">Весь код (102 файла, 8872 строк) закоммичен и запушен в master ветку spring-app репозитория. Чистый working tree.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 19: Лицензии в настройках</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-30 21:34</span>
+            </span>
+          </div>
+          <div class="step-detail">Добавлен раскрывающийся раздел Licenses в SettingsScreen. 11 ключевых библиотек (React, RN, Expo, Three.js и др.), все MIT. Сворачивание/разворачивание по тапу. Локализация на 4 языка (en/ru/uk/pl).</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 18: Этапная анимация (AN-027/028/029/042/043)</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-30 21:29</span>
+            </span>
+          </div>
+          <div class="step-detail">Пауза 100ms перед сжатием, плавное сжатие 450ms с easeInOutCubic, micro-overshoot по интенсивности (subtle 0.2%, medium 0.5%, strong 1.2%), фиксация 200ms. stageAnimRef передается в Spring3D, useFrame обрабатывает 3 фазы.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 17: Финальная анимация + экран завершения</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-30 21:13</span>
+            </span>
+          </div>
+          <div class="step-detail">6-фазная анимация пружины (пауза, дожатие до max, удержание, выстрел, затухающие колебания, покой). Звук и вибрация на фазе выстрела. CompletionScreen с staggered fade-in. Кнопка &#39;New goal&#39; -&gt; create-goal. Recovery при перезапуске в статусе completing.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 16: Polish &amp; animations</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-29 22:14</span>
+            </span>
+          </div>
+          <div class="step-detail">Исправлен TS absoluteFillObject. PrimaryButton spring-анимация при нажатии. SettingsButton scale-анимация. Create-goal fade+slide entrance. Splash screen через expo-splash-screen. 0 TS ошибок, 98 тестов.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 15: Sound effects module</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-29 22:00</span>
+            </span>
+          </div>
+          <div class="step-detail">Сгенерированы 5 WAV-ассетов (tap, stage_subtle/medium/strong, completion, ~143KB). Модуль sound.ts с ленивой загрузкой через expo-av. Интегрировано в useGameSession рядом с хаптиками. 6 тестов, всего 98 passed.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Web-MVP deployed to GitHub Pages</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-29 21:14</span>
+            </span>
+          </div>
+          <div class="step-detail">Fixed baseUrl for /spring-app/ subdirectory, added .nojekyll for _expo folder, verified working at https://skirik2020.github.io/spring-app/</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 13: Integration tests</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-29 20:59</span>
+            </span>
+          </div>
+          <div class="step-detail">Added 9 tests: i18n completeness (all keys in all 4 locales, no empty strings, recovery keys), feedback module (tapHaptic/stageHaptic/completionHaptic with mocked expo-haptics). Total 92 tests passing.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 12: Recovery screen</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-29 20:57</span>
+            </span>
+          </div>
+          <div class="step-detail">Recovery screen for corrupted sessions. Shows error message, Start Fresh button deletes corrupted session and navigates to create-goal. i18n strings added for all 4 languages.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 11: Completion flow</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-29 20:55</span>
+            </span>
+          </div>
+          <div class="step-detail">Completion screen with staggered fade-in animations (title, goal, message, button). New Goal button clears session and navigates to create-goal. Route guard verified. SafeAreaView, PrimaryButton reused.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 10: Settings screen</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-29 20:51</span>
+            </span>
+          </div>
+          <div class="step-detail">Full settings screen: Sound/Vibration toggles, 4-language selector (en/ru/uk/pl), version display, back navigation. Settings persist via AsyncStorage. All i18n strings already existed.</div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="dot dot-done">&#10003;</span>
+        <div class="step-body">
+          <div class="step-head">
+            <span class="step-title">Stage 9: Feedback Layer - haptics</span>
+            <span class="step-meta">
+              <span class="model-badge">opus-4-6</span>
+              <span class="step-time">2026-07-29 20:47</span>
+            </span>
+          </div>
+          <div class="step-detail">Installed expo-haptics, expo-av. Created src/features/feedback.ts with tapHaptic, stageHaptic, completionHaptic. Integrated into useGameSession: light haptic on tap, medium/heavy on stage transitions (by intensity), success+heavy on completion. All gated by settings.hapticsEnabled. Sound assets TBD.</div>
+        </div>
+      </li>
       <li class="step">
         <span class="dot dot-done">&#10003;</span>
         <div class="step-body">
@@ -236,7 +821,7 @@
           <div class="step-detail">Reanimated + SVG, состояние в AsyncStorage</div>
         </div>
       </li></ul>
-      <div class="mini-models">Модели: opus-4-6 - 1, opus-4-8 - 2</div>
+      <div class="mini-models">Модели: opus-4-6 - 46, opus-4-8 - 2</div>
     </article></div>
 
     <section class="stats">
@@ -244,18 +829,18 @@
       
         <div class="bar-row">
           <span class="bar-name">opus-4-8</span>
-          <span class="bar-track"><span class="bar-fill" style="width:100%"></span></span>
+          <span class="bar-track"><span class="bar-fill" style="width:9%"></span></span>
           <span class="bar-val">4</span>
         </div>
         <div class="bar-row">
           <span class="bar-name">sonnet-5</span>
-          <span class="bar-track"><span class="bar-fill" style="width:50%"></span></span>
+          <span class="bar-track"><span class="bar-fill" style="width:4%"></span></span>
           <span class="bar-val">2</span>
         </div>
         <div class="bar-row">
           <span class="bar-name">opus-4-6</span>
-          <span class="bar-track"><span class="bar-fill" style="width:25%"></span></span>
-          <span class="bar-val">1</span>
+          <span class="bar-track"><span class="bar-fill" style="width:100%"></span></span>
+          <span class="bar-val">46</span>
         </div>
       
   <div class="legend">
